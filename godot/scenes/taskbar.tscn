@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0wrfk63v6nsn"]
+
+[ext_resource type="Texture2D" uid="uid://batkam406hk3t" path="res://rescouces/taskbar.png" id="1_tn7o8"]
+
+[node name="Taskbar" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 1064.07)
+scale = Vector2(1, 0.695)
+texture = ExtResource("1_tn7o8")

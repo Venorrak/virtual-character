@@ -14,13 +14,15 @@ var num_socket = 5555
 @onready var dum_text = $Tv/display/SubViewport/dum
 @onready var brb = $Tv/display/SubViewport/brb
 @onready var starting = $Tv/display/SubViewport/starting
+@onready var animator = $AnimationPlayer
+@onready var camera = $Camera3D
 
-var server = TCPServer.new()
+var server = WebSocketPeer.new()
 var clients = []
 var equaliser_bars = []
 
 func _ready():
-	server.listen(num_socket, "127.0.0.1")
+	server.connect_to_url("ws://192.168.0.16:5963")
 	var childrens = equaliser.find_children("right")[0].get_children()
 	for i in len(childrens):
 		equaliser_bars.append(childrens[i])
@@ -29,15 +31,15 @@ func _ready():
 		equaliser_bars.append(childrens[i])
 	
 func _process(delta):
-	if server.is_connection_available():
-		clients.append(server.take_connection())
-	for client in clients:
-		if client.get_status() == 2:
-			var available_bytes = client.get_available_bytes()
-			if available_bytes > 0:
-				var data = client.get_partial_data(available_bytes)
-				data = json.parse_string(str(data[1].get_string_from_utf8()))
-				match data["command"]:
+	server.poll()
+	var state = server.get_ready_state()
+	if state == WebSocketPeer.STATE_OPEN:
+		while server.get_available_packet_count():
+			var pkt = server.get_packet()
+			var data = json.parse_string(str(pkt.get_string_from_utf8()))
+			print(data)
+			if data["to"] == "avatar":
+				match data["payload"]["command"]:
 					"freeze_unfreeze_head":
 						head.frozen = !head.frozen
 					"reset_head":
@@ -60,10 +62,27 @@ func _process(delta):
 						dum_text.visible = !dum_text.visible
 						dum_timer.start()
 					"brb_on_off":
-						brb.visible = !brb.visible
+						if brb.visible == true:
+							animator.current_animation = "brb_off"
+						else:
+							animator.current_animation = "brb_on"
 					"starting_on_off":
-						starting.visible = !starting.visible
-						
+						if starting.visible == true:
+							animator.current_animation = "ease_out"
+						else:
+							animator.current_animation = "ease_in"
+					"zoom_in_out":
+						if camera.position.x == 3.0:
+							animator.current_animation = "center_out"
+						else:
+							animator.current_animation = "center_in"
+	elif state == WebSocketPeer.STATE_CLOSING:
+		# Keep polling to achieve proper close.
+		pass
+	elif state == WebSocketPeer.STATE_CLOSED:
+		var code = server.get_close_code()
+		var reason = server.get_close_reason()
+		print("WebSocket closed with code: %d, reason %s. Clean: %s" % [code, reason, code != -1])
 func change_face_color(couleur : Color):
 	for i in len(equaliser_bars):
 		equaliser_bars[i].color = couleur

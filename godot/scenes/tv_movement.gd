@@ -6,6 +6,11 @@ var num_socket = 12345
 var json = JSON.new()
 var rainbow_status = 0.0
 
+@export var starting: bool = true
+@onready var starting_screen = $display/SubViewport/starting
+@export var brb: bool = false
+@onready var brb_screen = $display/SubViewport/brb
+
 @export var frozen: bool = false
 @export var rainbow: bool = false
 
@@ -38,9 +43,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	starting_screen.visible = starting
+	brb_screen.visible = brb
+	
 	if socket.get_available_packet_count() > 0:
 		var pkt = socket.get_packet().get_string_from_ascii()
 		pkt = json.parse_string(pkt)
+		#print(pkt)
 		var left_face_pos = pkt[0]
 		var right_face_pos = pkt[1]
 		var top_face_pos = pkt[2]
@@ -83,11 +92,11 @@ func _process(delta):
 		if frozen == false:
 			left_eye.position.x = origin_left_eye_postion.x + (-left_left_eye_delta + right_left_eye_delta) * 7
 			right_eye.position.x = origin_right_eye_position.x + (-left_right_eye_delta + right_left_eye_delta) * 7
-		if rainbow == true:
-			tv_mesh.get_active_material(0).albedo_color = Color.from_hsv(rainbow_status, 1.0, 1.0, 1.0)
-			rainbow_status += 0.02
-		else:
-			tv_mesh.get_active_material(0).albedo_color = Color("ffffff")
+	if rainbow == true:
+		tv_mesh.get_active_material(0).albedo_color = Color.from_hsv(rainbow_status, 1.0, 1.0, 1.0)
+		rainbow_status += 0.005
+	else:
+		tv_mesh.get_active_material(0).albedo_color = Color("ffffff")
 
 
 func _on_rainbow_timer_timeout():

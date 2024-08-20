@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3lfsldaf085"]
+[gd_scene load_steps=14 format=3 uid="uid://b3lfsldaf085"]
 
 [ext_resource type="Script" path="res://scenes/tv_movement.gd" id="1_7jmbi"]
 [ext_resource type="Shader" path="res://scripts/face.gdshader" id="2_ox6oe"]
 [ext_resource type="ArrayMesh" uid="uid://c625f2ode54o5" path="res://rescouces/tv2_pas_de_truc_rond.res" id="2_wdfl0"]
 [ext_resource type="PackedScene" uid="uid://qcprw7il6mp0" path="res://scenes/equaliser.tscn" id="3_ko2ty"]
-[ext_resource type="Texture2D" uid="uid://8cstl88xhtyt" path="res://rescouces/brb.png" id="4_4pukt"]
-[ext_resource type="Texture2D" uid="uid://dbadfcoiyauvw" path="res://rescouces/starting.png" id="5_eyeff"]
+[ext_resource type="PackedScene" uid="uid://d4iuxhlbcxtqh" path="res://scenes/stand_by.tscn" id="5_eqw6k"]
+[ext_resource type="Shader" uid="uid://beq6am1m442rv" path="res://scenes/tv.tres" id="7_7kekv"]
+[ext_resource type="PackedScene" uid="uid://dahtbwq3re7dw" path="res://scenes/bouce.tscn" id="7_s70wp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2sbmy"]
 
@@ -13,6 +14,7 @@
 viewport_path = NodePath("display/SubViewport")
 
 [sub_resource type="LabelSettings" id="LabelSettings_fpn6e"]
+font_size = 52
 font_color = Color(0.305882, 0.435294, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_ec1f2"]
@@ -20,8 +22,12 @@ font_color = Color(0.305882, 0.435294, 1, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j8fgg"]
 shader = ExtResource("2_ox6oe")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fxv4g"]
+shader = ExtResource("7_7kekv")
+
 [node name="Tv" type="Node3D"]
 script = ExtResource("1_7jmbi")
+starting = false
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 mass = 0.01
@@ -36,7 +42,8 @@ mesh = ExtResource("2_wdfl0")
 skeleton = NodePath("")
 
 [node name="face" type="Sprite3D" parent="."]
-transform = Transform3D(-6.11959e-09, 0, 0.14, 0, 0.14, 0, -0.14, 0, -6.11959e-09, 0.803684, 0, 0)
+transform = Transform3D(-6.11959e-09, 0, 0.14, 0, 0.14, 0, -0.14, 0, -6.11959e-09, 0.81, 0, 0)
+transparent = false
 texture = SubResource("ViewportTexture_rww40")
 
 [node name="display" type="Node3D" parent="."]
@@ -59,17 +66,11 @@ offset_right = -299.605
 offset_bottom = -125.625
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(17.305, 17.305)
+scale = Vector2(6, 6)
 text = "DUM"
 label_settings = SubResource("LabelSettings_fpn6e")
 justification_flags = 0
 uppercase = true
-
-[node name="left_eye" type="MeshInstance2D" parent="display/SubViewport"]
-modulate = Color(0.305784, 0.433938, 1, 1)
-position = Vector2(400, 220)
-scale = Vector2(126.781, 198.195)
-mesh = SubResource("SphereMesh_ec1f2")
 
 [node name="right_eye" type="MeshInstance2D" parent="display/SubViewport"]
 modulate = Color(0.305784, 0.433938, 1, 1)
@@ -77,17 +78,22 @@ position = Vector2(880, 220)
 scale = Vector2(126.781, 198.195)
 mesh = SubResource("SphereMesh_ec1f2")
 
+[node name="left_eye" type="MeshInstance2D" parent="display/SubViewport"]
+modulate = Color(0.305784, 0.433938, 1, 1)
+position = Vector2(400, 220)
+scale = Vector2(126.781, 198.195)
+mesh = SubResource("SphereMesh_ec1f2")
+
 [node name="equaliser" parent="display/SubViewport" instance=ExtResource("3_ko2ty")]
 
-[node name="brb" type="Sprite2D" parent="display/SubViewport"]
+[node name="brb" parent="display/SubViewport" instance=ExtResource("7_s70wp")]
 visible = false
-position = Vector2(640, 480)
-texture = ExtResource("4_4pukt")
+position = Vector2(92.255, 163.06)
+scale = Vector2(0.94, 1)
 
-[node name="starting" type="Sprite2D" parent="display/SubViewport"]
+[node name="starting" parent="display/SubViewport" instance=ExtResource("5_eqw6k")]
 visible = false
-position = Vector2(640, 480)
-texture = ExtResource("5_eyeff")
+scale = Vector2(1.11, 1.495)
 
 [node name="tv_shader" type="ColorRect" parent="display/SubViewport"]
 material = SubResource("ShaderMaterial_j8fgg")
@@ -101,6 +107,12 @@ offset_right = 40.0
 offset_bottom = 30.0
 scale = Vector2(33.94, 33.94)
 color = Color(0, 1, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="display/SubViewport"]
+visible = false
+material = SubResource("ShaderMaterial_fxv4g")
+offset_right = 2633.0
+offset_bottom = 1350.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.812534, 0, 0)
