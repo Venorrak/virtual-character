@@ -16,6 +16,7 @@ var num_socket = 5555
 @onready var starting = $Tv/display/SubViewport/starting
 @onready var animator = $AnimationPlayer
 @onready var camera = $Camera3D
+@onready var TwitchLabel = $"taskbar_viewport/Taskbar/twitchNode/twitch stats"
 
 var server = WebSocketPeer.new()
 var clients = []
@@ -76,6 +77,9 @@ func _process(delta):
 							animator.current_animation = "center_out"
 						else:
 							animator.current_animation = "center_in"
+					"last_follow_update":
+						var followerName = data["payload"]["data"]["name"]
+						TwitchLabel.text = "[b][font_size=22] " + "Last follower : " + followerName + ". [color=pink]Thank you <3[/color]" + "[/font_size][/b]"
 	elif state == WebSocketPeer.STATE_CLOSING:
 		# Keep polling to achieve proper close.
 		pass

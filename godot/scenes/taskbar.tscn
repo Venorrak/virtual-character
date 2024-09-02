@@ -1,10 +1,74 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0wrfk63v6nsn"]
+[gd_scene load_steps=4 format=3 uid="uid://c0wrfk63v6nsn"]
 
 [ext_resource type="Texture2D" uid="uid://batkam406hk3t" path="res://rescouces/taskbar.png" id="1_tn7o8"]
+[ext_resource type="Script" path="res://scenes/taskbar.gd" id="1_ubit8"]
+[ext_resource type="AnimationLibrary" uid="uid://d1ujpypa1cfei" path="res://taskbar_anim.res" id="3_ay4fc"]
 
 [node name="Taskbar" type="Node2D"]
+script = ExtResource("1_ubit8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(960, 1064.07)
 scale = Vector2(1, 0.695)
 texture = ExtResource("1_tn7o8")
+
+[node name="JoelNode" type="Node2D" parent="."]
+position = Vector2(-1920, 0)
+
+[node name="JoelStats" type="RichTextLabel" parent="JoelNode"]
+offset_top = 1048.0
+offset_right = 1923.0
+offset_bottom = 1080.0
+bbcode_enabled = true
+text = "[b][font_size=22] Joel bdmsajd;lkjkasdj  dsalkd;laskd;kd;laskd ;as[/font_size][/b]"
+fit_content = true
+
+[node name="weatherNode" type="Node2D" parent="."]
+position = Vector2(-1920, 0)
+
+[node name="Weather" type="RichTextLabel" parent="weatherNode"]
+offset_top = 1048.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+bbcode_enabled = true
+text = "[b][font_size=22]Weather[/font_size][/b]"
+fit_content = true
+
+[node name="twitchNode" type="Node2D" parent="."]
+position = Vector2(-1920, 0)
+
+[node name="twitch stats" type="RichTextLabel" parent="twitchNode"]
+offset_top = 1048.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+bbcode_enabled = true
+text = "[b][font_size=22] Twitch[/font_size][/b]"
+fit_content = true
+
+[node name="TimeNode" type="Node2D" parent="."]
+position = Vector2(-1920, 0)
+
+[node name="Time" type="RichTextLabel" parent="TimeNode"]
+offset_top = 1048.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+bbcode_enabled = true
+text = "[b][font_size=22] Time[/font_size][/b]"
+
+[node name="AnimationPlayer1" type="AnimationPlayer" parent="."]
+libraries = {
+"": ExtResource("3_ay4fc")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"taskbar_anim": ExtResource("3_ay4fc")
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="carousel_timer" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[connection signal="timeout" from="carousel_timer" to="." method="_on_carousel_timer_timeout"]

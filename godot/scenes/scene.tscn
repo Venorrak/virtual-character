@@ -361,8 +361,9 @@ script = ExtResource("1_pj5wt")
 [node name="Tv" parent="." instance=ExtResource("1_5sr1d")]
 
 [node name="taskbar" type="Sprite3D" parent="."]
-transform = Transform3D(-2.66639e-08, 0, 1, 0, 1, 0, -0.61, 0, -4.37114e-08, 0, 4.065, 4.295)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4.065, 0.5)
 visible = false
+texture_filter = 0
 texture = SubResource("ViewportTexture_te58l")
 
 [node name="Camera3D" type="Camera3D" parent="."]
