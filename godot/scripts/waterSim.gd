@@ -8,9 +8,12 @@ var endPointAcc: Vector2 = Vector2(0, 0)
 @export var springStrength: float = 0.0001
 @onready var springLine = $Line2D
 @onready var maxLength: int = 500
+@onready var collisionShape = $Sprite2D/collisionBody/CollisionShape2D
+@export var waterCollisionDampening: float = 1 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	waterCollisionDampening /= 1000
 	pass # Replace with function body.
 
 
@@ -54,4 +57,9 @@ func setEndPosition(_position: Vector2):
 func getEndPosition():
 	return endPoint.position
 
+func setCollisionWidth(width: float):
+	collisionShape.shape.size.x = width
 
+func _on_collision_body_body_entered(body):
+	var yVelocity = body.linear_velocity.y * waterCollisionDampening
+	applyForce(yVelocity)

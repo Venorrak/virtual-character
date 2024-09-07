@@ -15,8 +15,8 @@ var num_socket = 5555
 @onready var brb = $Tv/display/SubViewport/brb
 @onready var starting = $Tv/display/SubViewport/starting
 @onready var animator = $AnimationPlayer
-@onready var camera = $Camera3D
 @onready var TwitchLabel = $"taskbar_viewport/Taskbar/twitchNode/twitch stats"
+@onready var water = $taskbar_viewport/WaterWrap
 
 var server = WebSocketPeer.new()
 var clients = []
@@ -48,7 +48,7 @@ func _process(delta):
 						head.rainbow = false
 						change_face_color("4e6fff")
 					"change_color":
-						change_face_color(data["data"])
+						change_face_color(data["payload"]["data"])
 					"rainbow_on_off":
 						head.rainbow = !head.rainbow
 						rainbow_timer.start()
@@ -69,17 +69,20 @@ func _process(delta):
 							animator.current_animation = "brb_on"
 					"starting_on_off":
 						if starting.visible == true:
-							animator.current_animation = "ease_out"
+							animator.current_animation = "start_off"
 						else:
-							animator.current_animation = "ease_in"
+							animator.current_animation = "start_on"
 					"zoom_in_out":
-						if camera.position.x == 3.0:
-							animator.current_animation = "center_out"
+						print(head.scale.x)
+						if head.scale.x > 3:
+							animator.current_animation = "zoom_out"
 						else:
-							animator.current_animation = "center_in"
+							animator.current_animation = "zoom_in"
 					"last_follow_update":
 						var followerName = data["payload"]["data"]["name"]
 						TwitchLabel.text = "[b][font_size=22] " + "Last follower : " + followerName + ". [color=pink]Thank you <3[/color]" + "[/font_size][/b]"
+					"Joel_Sent":
+						water.spawnJoel()
 	elif state == WebSocketPeer.STATE_CLOSING:
 		# Keep polling to achieve proper close.
 		pass

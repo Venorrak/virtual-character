@@ -25,18 +25,18 @@ shader = ExtResource("2_ox6oe")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fxv4g"]
 shader = ExtResource("7_7kekv")
 
-[node name="Tv" type="Node3D"]
+[node name="RigidBody3D" type="RigidBody3D"]
+mass = 0.01
+gravity_scale = 0.0
+sleeping = true
+freeze = true
 script = ExtResource("1_7jmbi")
 starting = false
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-mass = 0.01
-gravity_scale = 0.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_2sbmy")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 0.75, 0, 0, 0, 1, 0, 0, 0)
 mesh = ExtResource("2_wdfl0")
 skeleton = NodePath("")
@@ -129,6 +129,3 @@ wait_time = 20.0
 
 [node name="dum_timer" type="Timer" parent="."]
 wait_time = 20.0
-
-[connection signal="timeout" from="rainbow_timer" to="." method="_on_rainbow_timer_timeout"]
-[connection signal="timeout" from="dum_timer" to="." method="_on_dum_timer_timeout"]

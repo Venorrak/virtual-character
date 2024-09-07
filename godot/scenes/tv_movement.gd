@@ -1,4 +1,4 @@
-extends Node3D
+extends RigidBody3D
 
 var done = false
 var socket = PacketPeerUDP.new()
@@ -22,7 +22,7 @@ var rainbow_status = 0.0
 @export var origin_right_eye_position = 0
 @export var origin_right_eye_scale = 0
 
-@onready var tv_mesh = $RigidBody3D/CollisionShape3D/MeshInstance3D
+@onready var tv_mesh = $CollisionShape3D/MeshInstance3D
 @onready var dum = $display/SubViewport/dum
 
 func _init():
@@ -43,6 +43,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	starting_screen.visible = starting
 	brb_screen.visible = brb
 	

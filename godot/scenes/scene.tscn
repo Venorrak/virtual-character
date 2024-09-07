@@ -1,49 +1,78 @@
-[gd_scene load_steps=15 format=3 uid="uid://dfyg3jrvb5863"]
+[gd_scene load_steps=14 format=3 uid="uid://dfyg3jrvb5863"]
 
 [ext_resource type="PackedScene" uid="uid://b3lfsldaf085" path="res://scenes/tv.tscn" id="1_5sr1d"]
 [ext_resource type="Script" path="res://scenes/gestion.gd" id="1_pj5wt"]
 [ext_resource type="PackedScene" uid="uid://c0wrfk63v6nsn" path="res://scenes/taskbar.tscn" id="3_7j0w2"]
+[ext_resource type="PackedScene" uid="uid://emfoog70m1ob" path="res://scenes/water_Wrap.tscn" id="4_704lw"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_te58l"]
 viewport_path = NodePath("taskbar_viewport")
 
-[sub_resource type="Animation" id="Animation_ab8qi"]
+[sub_resource type="Animation" id="Animation_ge6py"]
+resource_name = "zoom_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tv:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(-4.14106, 1),
+"update": 0,
+"values": [Vector3(2.555, -3.28, -7.17), Vector3(4.335, 0.6, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tv:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-4.14106, 1),
+"update": 0,
+"values": [Vector3(1.845, 1.845, 1.845), Vector3(5.182, 5.182, 5.182)]
+}
+
+[sub_resource type="Animation" id="Animation_x15l5"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:position")
+tracks/0/path = NodePath("Tv:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(3, 0, 0)]
+"values": [Vector3(2.555, -3.28, -7.17)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Tv:starting")
+tracks/1/path = NodePath("Tv:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector3(1.845, 1.845, 1.845)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Camera3D:size")
+tracks/2/path = NodePath("Tv:starting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.5]
+"update": 1,
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -57,329 +86,233 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("taskbar:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+
+[sub_resource type="Animation" id="Animation_bqtbc"]
+resource_name = "zoom_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tv:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-4.14106, 1),
+"update": 0,
+"values": [Vector3(4.335, 0.6, 0), Vector3(4.335, -3.28, -7.17)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tv:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(-4.14106, 1),
+"update": 0,
+"values": [Vector3(5.182, 5.182, 5.182), Vector3(1.845, 1.845, 1.845)]
 }
 
-[sub_resource type="Animation" id="Animation_lsyu6"]
+[sub_resource type="Animation" id="Animation_g7dfc"]
+resource_name = "start_on"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tv:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-5.46416, 1),
+"update": 0,
+"values": [Vector3(4.335, 0.6, 0), Vector3(4.335, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tv:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-4.14106, 1),
+"update": 0,
+"values": [Vector3(5.1821, 5.1821, 5.1821), Vector3(10.837, 10.837, 10.837)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tv:starting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_g3080"]
+resource_name = "start_off"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tv:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-7.21, -5.65686),
+"update": 0,
+"values": [Vector3(4.335, 0, 0), Vector3(4.335, 0.6, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tv:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-4.14106, 1),
+"update": 0,
+"values": [Vector3(10.837, 10.837, 10.837), Vector3(5.182, 5.182, 5.182)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tv:starting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_vfmv4"]
 resource_name = "brb_off"
 length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:position")
+tracks/0/path = NodePath("Tv:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(-10, -10),
+"transitions": PackedFloat32Array(-4.92458, 1),
 "update": 0,
-"values": [Vector3(3, 0, 0), Vector3(3, 0, 0)]
+"values": [Vector3(4.335, 0, 0), Vector3(4.335, 0.6, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Tv:brb")
+tracks/1/path = NodePath("Tv:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-4.14106, 1),
+"update": 0,
+"values": [Vector3(10.837, 10.837, 10.837), Vector3(5.182, 5.182, 5.182)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Camera3D:size")
+tracks/2/path = NodePath("Tv:brb")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(-5.85, 1),
-"update": 0,
-"values": [0.76, 2.5]
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_daf2n"]
+[sub_resource type="Animation" id="Animation_im42l"]
 resource_name = "brb_on"
 length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:position")
+tracks/0/path = NodePath("Tv:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(-10, -10),
+"transitions": PackedFloat32Array(0.267943, 1),
 "update": 0,
-"values": [Vector3(3, 0, 0), Vector3(3, 0, 0)]
+"values": [Vector3(4.335, 0.6, 0), Vector3(4.335, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Tv:brb")
+tracks/1/path = NodePath("Tv:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-4.14106, 1),
+"update": 0,
+"values": [Vector3(5.182, 5.182, 5.182), Vector3(10.837, 10.837, 10.837)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tv:brb")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Camera3D:size")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(-5.85, 1),
-"update": 0,
-"values": [2.5, 0.76]
-}
 
-[sub_resource type="Animation" id="Animation_lvuhd"]
-resource_name = "center_in"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(-3.35, 1),
-"update": 0,
-"values": [6.5, 2.5]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.3),
-"transitions": PackedFloat32Array(-2.82843, 1),
-"update": 0,
-"values": [Vector3(3, 1.94, 4.3), Vector3(3, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("taskbar:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_r710b"]
-resource_name = "center_out"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(-3.249, 1),
-"update": 0,
-"values": [Vector3(3, 0, 0), Vector3(2, 1.94, 4.3)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.3),
-"transitions": PackedFloat32Array(-2.37841, 1),
-"update": 0,
-"values": [2.5, 6.5]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("taskbar:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_n701j"]
-resource_name = "ease_in"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(-5.85, 87.4267),
-"update": 0,
-"values": [Vector3(1.305, 0, 0), Vector3(3, 0.08, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Tv:starting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Camera3D:size")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(-5.85, 1),
-"update": 0,
-"values": [2.5, 0.7]
-}
-
-[sub_resource type="Animation" id="Animation_38it4"]
-resource_name = "ease_out"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(-5.85, -7.21),
-"update": 0,
-"values": [Vector3(3, 0.08, 0), Vector3(3, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Tv:starting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Camera3D:size")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(-5.85634, 1),
-"update": 0,
-"values": [0.7, 2.5]
-}
-
-[sub_resource type="Animation" id="Animation_3om86"]
-resource_name = "face_unzoom"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(-10, -10),
-"update": 0,
-"values": [Vector3(1.7, 0.015, 0), Vector3(3, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_m70iv"]
-resource_name = "face_zoom"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(-10, -10),
-"update": 0,
-"values": [Vector3(3, 0, 0), Vector3(1.7, 0.015, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kirp5"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ur6tp"]
 _data = {
-"RESET": SubResource("Animation_ab8qi"),
-"brb_off": SubResource("Animation_lsyu6"),
-"brb_on": SubResource("Animation_daf2n"),
-"center_in": SubResource("Animation_lvuhd"),
-"center_out": SubResource("Animation_r710b"),
-"ease_in": SubResource("Animation_n701j"),
-"ease_out": SubResource("Animation_38it4"),
-"face_unzoom": SubResource("Animation_3om86"),
-"face_zoom": SubResource("Animation_m70iv")
+"RESET": SubResource("Animation_x15l5"),
+"brb_off": SubResource("Animation_vfmv4"),
+"brb_on": SubResource("Animation_im42l"),
+"start_off": SubResource("Animation_g3080"),
+"start_on": SubResource("Animation_g7dfc"),
+"zoom_in": SubResource("Animation_ge6py"),
+"zoom_out": SubResource("Animation_bqtbc")
 }
 
 [node name="Scene" type="Node3D"]
 script = ExtResource("1_pj5wt")
 
 [node name="Tv" parent="." instance=ExtResource("1_5sr1d")]
+transform = Transform3D(1.845, 0, 0, 0, 1.845, 0, 0, 0, 1.845, 2.555, -3.28, -7.17)
 
 [node name="taskbar" type="Sprite3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4.065, 0.5)
-visible = false
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 texture_filter = 0
 texture = SubResource("ViewportTexture_te58l")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.9703, 0, 0)
 projection = 1
-size = 2.5
+size = 10.8
 near = 0.001
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-reset_on_save = false
 libraries = {
-"": SubResource("AnimationLibrary_kirp5")
+"": SubResource("AnimationLibrary_ur6tp")
 }
 
 [node name="taskbar_viewport" type="SubViewport" parent="."]
 transparent_bg = true
 size = Vector2i(1920, 1080)
+size_2d_override_stretch = true
+
+[node name="WaterWrap" parent="taskbar_viewport" instance=ExtResource("4_704lw")]
 
 [node name="Taskbar" parent="taskbar_viewport" instance=ExtResource("3_7j0w2")]

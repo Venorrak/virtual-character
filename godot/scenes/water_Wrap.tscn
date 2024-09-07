@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://emfoog70m1ob"]
+[gd_scene load_steps=5 format=3 uid="uid://emfoog70m1ob"]
 
 [ext_resource type="Script" path="res://scripts/water_Wrap.gd" id="1_2mxfv"]
 [ext_resource type="Shader" path="res://scenes/water.gdshader" id="2_ndjx2"]
-[ext_resource type="Texture2D" uid="uid://dfnr3yy3oxgfw" path="res://rescouces/icon.svg" id="3_kptsq"]
 
 [sub_resource type="Curve2D" id="Curve2D_ls1ii"]
 resource_local_to_scene = true
@@ -14,9 +13,9 @@ shader_parameter/water_transparency = 0.86
 
 [node name="WaterWrap" type="Node2D"]
 script = ExtResource("1_2mxfv")
+waterHeight = 985
 
 [node name="water" type="Node2D" parent="."]
-visible = false
 
 [node name="waterLine" type="Path2D" parent="."]
 visible = false
@@ -29,10 +28,4 @@ default_color = Color(0.351388, 0.573236, 0.857891, 1)
 [node name="waterBody" type="Polygon2D" parent="."]
 material = SubResource("ShaderMaterial_er3ys")
 
-[node name="Point2" type="Sprite2D" parent="."]
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("3_kptsq")
-
-[node name="Point1" type="Sprite2D" parent="."]
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("3_kptsq")
+[node name="Joels" type="Node2D" parent="."]
