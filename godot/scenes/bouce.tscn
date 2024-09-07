@@ -20,7 +20,7 @@ friction = 0.0
 bounce = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s2ur4"]
-size = Vector2(256, 208)
+size = Vector2(192, 136)
 
 [node name="Node2D" type="Node2D"]
 
@@ -60,6 +60,7 @@ angular_damp_mode = 1
 script = ExtResource("1_qky47")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_s2ur4")
 one_way_collision_margin = 128.0
 

@@ -88,8 +88,8 @@ mesh = SubResource("SphereMesh_ec1f2")
 
 [node name="brb" parent="display/SubViewport" instance=ExtResource("7_s70wp")]
 visible = false
-position = Vector2(92.255, 163.06)
-scale = Vector2(0.94, 1)
+position = Vector2(0, 93.57)
+scale = Vector2(1.12, 1.175)
 
 [node name="starting" parent="display/SubViewport" instance=ExtResource("5_eqw6k")]
 visible = false
