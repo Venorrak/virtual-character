@@ -20,3 +20,10 @@ func ApplyFriction(friction: float):
 
 func setSpeed(vector: Vector2):
 	linear_velocity = vector
+
+func setScale(size: Vector2):
+	$CollisionPolygon2D.scale = $CollisionPolygon2D.scale * size
+	$Sprite2D.scale = $Sprite2D.scale * size
+
+func _on_death_timer_timeout():
+	queue_free()

@@ -15,6 +15,8 @@ shader_parameter/water_transparency = 0.86
 script = ExtResource("1_2mxfv")
 waterHeight = 985
 
+[node name="Joels" type="Node2D" parent="."]
+
 [node name="water" type="Node2D" parent="."]
 
 [node name="waterLine" type="Path2D" parent="."]
@@ -27,5 +29,3 @@ default_color = Color(0.351388, 0.573236, 0.857891, 1)
 
 [node name="waterBody" type="Polygon2D" parent="."]
 material = SubResource("ShaderMaterial_er3ys")
-
-[node name="Joels" type="Node2D" parent="."]

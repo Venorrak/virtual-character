@@ -82,7 +82,10 @@ func _process(delta):
 						var followerName = data["payload"]["data"]["name"]
 						TwitchLabel.text = "[b][font_size=22] " + "Last follower : " + followerName + ". [color=pink]Thank you <3[/color]" + "[/font_size][/b]"
 					"Joel_Sent":
-						water.spawnJoel()
+						if "size" in data["payload"]["params"]:
+							water.spawnJoel(data["payload"]["params"]["size"])
+						else:
+							water.spawnJoel()
 	elif state == WebSocketPeer.STATE_CLOSING:
 		# Keep polling to achieve proper close.
 		pass

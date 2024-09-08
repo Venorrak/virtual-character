@@ -118,7 +118,7 @@ func _input(event):
 	if event.is_action_pressed("Joel"):
 		spawnJoel()
 		
-func spawnJoel():
+func spawnJoel(size: int = 1):
 	var screen = DisplayServer.screen_get_size()
 	var startPosition = Vector2(random.randi_range(0, screen.x), screen.y + 200)
 	var instance = JoelNode.instantiate()
@@ -128,6 +128,8 @@ func spawnJoel():
 		xVelocity *= -1
 		
 	var startVelocity = Vector2(xVelocity, -1500)
+	size = 1 + (size / 10)
 	instance.position = startPosition
 	instance.linear_velocity = startVelocity
+	instance.setScale(Vector2(size, size))
 	JoelHome.add_child(instance)
